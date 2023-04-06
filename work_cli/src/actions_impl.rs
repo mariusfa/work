@@ -7,4 +7,8 @@ impl Actions for ActionsImpl {
     fn start(&mut self) -> Result<(), Box<dyn Error>> {
         unimplemented!();
     }
+
+    fn status(&mut self) -> Result<(), Box<dyn Error>> {
+        unimplemented!()
+    }
 }

@@ -7,7 +7,7 @@ pub fn run(args: Vec<String>, actions: &mut dyn Actions) -> Result<(), Box<dyn E
 
     match command {
         Command::Start => actions.start()?,
-        Command::Status => unimplemented!(),
+        Command::Status => actions.status()?,
         Command::Help => unimplemented!(),
     }
 
@@ -28,12 +28,13 @@ mod tests {
         assert!(result.is_ok());
     }
 
-    // #[test]
-    // fn test_run_status() {
-    //     let args = vec![String::from("work_cli"), String::from("status")];
-    //     let result = run(args, fake_start::start);
-    //     assert!(result.is_ok());
-    // }
+    #[test]
+    fn test_run_status() {
+        let mut actions = ActionsFake {};
+        let args = vec![String::from("work_cli"), String::from("status")];
+        let result = run(args, &mut actions);
+        assert!(result.is_ok());
+    }
 
     // #[test]
     // fn test_run_help() {

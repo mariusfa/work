@@ -7,4 +7,8 @@ impl Actions for ActionsFake {
     fn start(&mut self) -> Result<(), Box<dyn Error>> {
         Ok(())
     }
+
+    fn status(&mut self) -> Result<(), Box<dyn Error>> {
+        Ok(())
+    }
 }
