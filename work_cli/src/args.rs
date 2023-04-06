@@ -7,7 +7,7 @@ pub enum Command {
     Help,
 }
 
-pub fn parse_args(args: Vec<String>) -> Result<Command, Box<dyn Error>> {
+pub fn parse_args(args: &[String]) -> Result<Command, Box<dyn Error>> {
     if args.len() < 2 {
         return Err("Insufficient arguments".into());
     }
@@ -33,7 +33,7 @@ mod tests {
     fn test_parse_args_insufficient_arguments() {
         let args = vec![String::from("work_cli")];
 
-        let result = parse_args(args);
+        let result = parse_args(&args);
 
         assert!(result.is_err());
         assert_eq!(format!("{}", result.unwrap_err()), "Insufficient arguments");
@@ -43,7 +43,7 @@ mod tests {
     fn test_parse_args_start() {
         let args = vec![String::from("work_cli"), String::from("start")];
 
-        let command = parse_args(args).unwrap();
+        let command = parse_args(&args).unwrap();
 
         assert_eq!(command, Command::Start);
     }
@@ -52,7 +52,7 @@ mod tests {
     fn test_parse_args_status() {
         let args = vec![String::from("work_cli"), String::from("status")];
 
-        let command = parse_args(args).unwrap();
+        let command = parse_args(&args).unwrap();
 
         assert_eq!(command, Command::Status);
     }
@@ -61,7 +61,7 @@ mod tests {
     fn test_parse_args_help() {
         let args = vec![String::from("work_cli"), String::from("help")];
 
-        let command = parse_args(args).unwrap();
+        let command = parse_args(&args).unwrap();
 
         assert_eq!(command, Command::Help);
     }
@@ -70,7 +70,7 @@ mod tests {
     fn test_parse_args_help_with_double_dash() {
         let args = vec![String::from("work_cli"), String::from("--help")];
 
-        let command = parse_args(args).unwrap();
+        let command = parse_args(&args).unwrap();
 
         assert_eq!(command, Command::Help);
     }
@@ -79,7 +79,7 @@ mod tests {
     fn test_parse_args_invalid_command() {
         let args = vec![String::from("work_cli"), String::from("invalid_command")];
 
-        let result = parse_args(args);
+        let result = parse_args(&args);
 
         assert!(result.is_err());
         assert_eq!(format!("{}", result.unwrap_err()), "Invalid command");
@@ -93,7 +93,7 @@ mod tests {
             String::from("extra_arg"),
         ];
 
-        let result = parse_args(args);
+        let result = parse_args(&args);
 
         assert!(result.is_err());
         assert_eq!(format!("{}", result.unwrap_err()), "Too many arguments");
