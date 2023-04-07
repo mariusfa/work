@@ -8,7 +8,7 @@ pub fn run(args: Vec<String>, actions: &mut dyn Actions) -> Result<(), Box<dyn E
     match command {
         Command::Start => actions.start()?,
         Command::Status => actions.status()?,
-        Command::Help => unimplemented!(),
+        Command::Help => actions.help()?,
     }
 
     Ok(())

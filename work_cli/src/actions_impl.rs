@@ -11,6 +11,10 @@ impl Actions for ActionsImpl {
     fn status(&mut self) -> Result<(), Box<dyn Error>> {
         unimplemented!()
     }
+
+    fn help(&mut self) -> Result<(), Box<dyn Error>> {
+        unimplemented!()
+    }
 }
 
 mod config_file {
