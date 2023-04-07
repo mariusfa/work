@@ -1,6 +1,4 @@
-use std::fs::{self, File, OpenOptions};
-use std::io::{Read, Write};
-use std::path::Path;
+use std::fs::{self};
 
 pub trait FileOperations {
     fn read(&self) -> String;
@@ -32,6 +30,12 @@ impl FileOperations for MockFile {
 
     fn write(&mut self, content: &str) {
         self.content = content.to_string();
+    }
+}
+
+impl MockFile {
+    pub fn new() -> Self {
+        MockFile { content: String::new() }
     }
 }
 

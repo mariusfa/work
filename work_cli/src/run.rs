@@ -36,12 +36,11 @@ mod tests {
         assert!(result.is_ok());
     }
 
-    // #[test]
-    // fn test_run_help() {
-    //     let args = vec![String::from("work_cli"), String::from("help")];
-    //     let result = run(args, fake_start::start);
-    //     assert!(result.is_ok());
-    // }
-
-    // Add more tests as needed
+    #[test]
+    fn test_run_help() {
+        let mut actions = ActionsFake {};
+        let args = vec![String::from("work_cli"), String::from("help")];
+        let result = run(args, &mut actions);
+        assert!(result.is_ok());
+    }
 }
